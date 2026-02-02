@@ -38,7 +38,7 @@ export function BoardingPassScanner({ onScanComplete }: BoardingPassScannerProps
     setError(null)
     setStep('scanning')
     setScanProgress(0)
-    setScanStatus('Scanbot SDK yükleniyor...')
+    setScanStatus('Tarayıcı hazırlanıyor...')
 
     // Progress animation
     const progressInterval = setInterval(() => {
@@ -46,10 +46,10 @@ export function BoardingPassScanner({ onScanComplete }: BoardingPassScannerProps
     }, 150)
 
     try {
-      // Load and use Scanbot SDK
+      // Use html5-qrcode for barcode scanning (license-free)
       setScanStatus('Barkod taranıyor...')
 
-      const { scanBarcodeFromImage } = await import('@/lib/scanbot')
+      const { scanBarcodeFromImage } = await import('@/lib/barcode-scanner')
       const barcodeData = await scanBarcodeFromImage(file)
 
       clearInterval(progressInterval)
