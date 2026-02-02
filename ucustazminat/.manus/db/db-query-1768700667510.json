@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE claims c\nSET \n  compensationAmount = (\n    SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id\n  ) * 400,\n  commissionAmount = (\n    SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id\n  ) * 400 * 0.25,\n  netPayoutAmount = (\n    SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id\n  ) * 400 * 0.75\nWHERE c.id IN (60001, 60002);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute UPDATE claims c\nSET \n  compensationAmount = (\n    SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id\n  ) * 400,\n  commissionAmount = (\n    SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id\n  ) * 400 * 0.25,\n  netPayoutAmount = (\n    SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id\n  ) * 400 * 0.75\nWHERE c.id IN (60001, 60002);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1520
+}

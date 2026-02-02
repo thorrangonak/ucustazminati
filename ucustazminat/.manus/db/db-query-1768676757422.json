@@ -1,0 +1,15 @@
+{
+  "query": "SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'claims' AND COLUMN_NAME = 'consentSignature';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'claims' AND COLUMN_NAME = 'consentSignature';",
+  "rows": [
+    {
+      "COLUMN_NAME": "consentSignature",
+      "DATA_TYPE": "mediumtext",
+      "CHARACTER_MAXIMUM_LENGTH": "16777215"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\tDATA_TYPE\tCHARACTER_MAXIMUM_LENGTH\nconsentSignature\tmediumtext\t16777215\n",
+  "stderr": "",
+  "execution_time_ms": 1544
+}

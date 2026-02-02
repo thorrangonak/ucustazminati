@@ -1,0 +1,50 @@
+{
+  "query": "SELECT id, claimNumber, compensationAmount, commissionAmount, netPayoutAmount, passengerName FROM claims ORDER BY id DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, claimNumber, compensationAmount, commissionAmount, netPayoutAmount, passengerName FROM claims ORDER BY id DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "60002",
+      "claimNumber": "UCT-2026-000010",
+      "compensationAmount": "400.00",
+      "commissionAmount": "100.00",
+      "netPayoutAmount": "300.00",
+      "passengerName": "Yalcin Ayhan"
+    },
+    {
+      "id": "60001",
+      "claimNumber": "UCT-2026-000009",
+      "compensationAmount": "400.00",
+      "commissionAmount": "100.00",
+      "netPayoutAmount": "300.00",
+      "passengerName": "Yalcin Ayhan"
+    },
+    {
+      "id": "30002",
+      "claimNumber": "UCT-2026-000008",
+      "compensationAmount": "600.00",
+      "commissionAmount": "150.00",
+      "netPayoutAmount": "450.00",
+      "passengerName": "TEST1 TEST"
+    },
+    {
+      "id": "30001",
+      "claimNumber": "UCT-2026-000007",
+      "compensationAmount": "600.00",
+      "commissionAmount": "150.00",
+      "netPayoutAmount": "450.00",
+      "passengerName": "TEST1 TEST"
+    },
+    {
+      "id": "6",
+      "claimNumber": "UCT-2026-000006",
+      "compensationAmount": "600.00",
+      "commissionAmount": "150.00",
+      "netPayoutAmount": "450.00",
+      "passengerName": "TEST DENEME"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclaimNumber\tcompensationAmount\tcommissionAmount\tnetPayoutAmount\tpassengerName\n60002\tUCT-2026-000010\t400.00\t100.00\t300.00\tYalcin Ayhan\n60001\tUCT-2026-000009\t400.00\t100.00\t300.00\tYalcin Ayhan\n30002\tUCT-2026-000008\t600.00\t150.00\t450.00\tTEST1 TEST\n30001\tUCT-2026-000007\t600.00\t150.00\t450.00\tTEST1 TEST\n6\tUCT-2026-000006\t600.00\t150.00\t450.00\tTEST DENEME\n",
+  "stderr": "",
+  "execution_time_ms": 1543
+}

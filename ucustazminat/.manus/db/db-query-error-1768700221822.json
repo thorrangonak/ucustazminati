@@ -1,0 +1,8 @@
+{
+  "query": "SELECT id, claim_number, compensation_amount, commission_amount, net_payout_amount, passenger_name FROM claims WHERE claim_number = 'UCT-2026-000010';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, claim_number, compensation_amount, commission_amount, net_payout_amount, passenger_name FROM claims WHERE claim_number = 'UCT-2026-000010';",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'claim_number' in 'where clause'"
+  ]
+}

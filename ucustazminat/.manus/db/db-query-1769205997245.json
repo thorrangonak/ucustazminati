@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, claimNumber, LEFT(consentSignature, 200) as signatureStart FROM claims WHERE id = 360001;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, claimNumber, LEFT(consentSignature, 200) as signatureStart FROM claims WHERE id = 360001;",
+  "rows": [
+    {
+      "id": "360001",
+      "claimNumber": "UCT-2026-000027",
+      "signatureStart": "https://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consent-1769203638786-2pil5k.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclaimNumber\tsignatureStart\n360001\tUCT-2026-000027\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consent-1769203638786-2pil5k.png\n",
+  "stderr": "",
+  "execution_time_ms": 62
+}

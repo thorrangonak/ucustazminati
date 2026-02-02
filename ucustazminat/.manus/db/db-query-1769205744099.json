@@ -1,0 +1,45 @@
+{
+  "query": "SELECT id, claimNumber, passengerIban, passengerBankName, LEFT(consentSignature, 100) as signaturePreview FROM claims WHERE id IN (SELECT id FROM claims ORDER BY id DESC LIMIT 5);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, claimNumber, passengerIban, passengerBankName, LEFT(consentSignature, 100) as signaturePreview FROM claims WHERE id IN (SELECT id FROM claims ORDER BY id DESC LIMIT 5);",
+  "rows": [
+    {
+      "id": "300001",
+      "claimNumber": "UCT-2026-000023",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "signaturePreview": "https://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen"
+    },
+    {
+      "id": "330001",
+      "claimNumber": "UCT-2026-000024",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "signaturePreview": "https://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen"
+    },
+    {
+      "id": "330002",
+      "claimNumber": "UCT-2026-000025",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "signaturePreview": "https://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen"
+    },
+    {
+      "id": "330003",
+      "claimNumber": "UCT-2026-000026",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "signaturePreview": "https://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen"
+    },
+    {
+      "id": "360001",
+      "claimNumber": "UCT-2026-000027",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "signaturePreview": "https://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclaimNumber\tpassengerIban\tpassengerBankName\tsignaturePreview\n300001\tUCT-2026-000023\tNULL\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen\n330001\tUCT-2026-000024\tNULL\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen\n330002\tUCT-2026-000025\tNULL\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen\n330003\tUCT-2026-000026\tNULL\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen\n360001\tUCT-2026-000027\tNULL\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663190028945/i5yu9ztG5JfDUj54XedFbT/signatures/33/consen\n",
+  "stderr": "",
+  "execution_time_ms": 69
+}

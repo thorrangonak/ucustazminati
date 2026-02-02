@@ -1,0 +1,104 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1768656007145,
+      "tag": "0000_happy_raider",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1768656205854,
+      "tag": "0001_noisy_violations",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768662460965,
+      "tag": "0002_true_cardiac",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1768665353284,
+      "tag": "0003_sharp_excalibur",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1768675825163,
+      "tag": "0004_cool_wallow",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1769098151572,
+      "tag": "0005_classy_silver_sable",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1769127732692,
+      "tag": "0006_fair_sentinels",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1769199943020,
+      "tag": "0007_gigantic_bucky",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1769200952978,
+      "tag": "0008_tidy_juggernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1769211155434,
+      "tag": "0009_large_wrecker",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1769218543195,
+      "tag": "0010_great_arachne",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1769373732560,
+      "tag": "0011_slippery_callisto",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1769374344651,
+      "tag": "0012_lucky_penance",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1769378751568,
+      "tag": "0013_shocking_scrambler",
+      "breakpoints": true
+    }
+  ]
+}

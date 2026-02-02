@@ -1,0 +1,28 @@
+{
+  "query": "SELECT claimNumber FROM claims ORDER BY id DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT claimNumber FROM claims ORDER BY id DESC LIMIT 10;",
+  "rows": [
+    {
+      "claimNumber": "UCT-2026-000006"
+    },
+    {
+      "claimNumber": "UCT-2026-000005"
+    },
+    {
+      "claimNumber": "UCT-2026-000004"
+    },
+    {
+      "claimNumber": "UCT-2026-000003"
+    },
+    {
+      "claimNumber": "UCT-2026-000002"
+    },
+    {
+      "claimNumber": "UCT-2026-000001"
+    }
+  ],
+  "messages": [],
+  "stdout": "claimNumber\nUCT-2026-000006\nUCT-2026-000005\nUCT-2026-000004\nUCT-2026-000003\nUCT-2026-000002\nUCT-2026-000001\n",
+  "stderr": "",
+  "execution_time_ms": 1538
+}

@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, name, email, passwordHash IS NOT NULL as hasPassword FROM users ORDER BY id DESC LIMIT 5",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, name, email, passwordHash IS NOT NULL as hasPassword FROM users ORDER BY id DESC LIMIT 5",
+  "rows": [
+    {
+      "id": "2670045",
+      "name": "Yeni Kullanıcı",
+      "email": "yenikullanici@test.com",
+      "hasPassword": "1"
+    },
+    {
+      "id": "2670036",
+      "name": "Test Curl User",
+      "email": "testcurl@example.com",
+      "hasPassword": "1"
+    },
+    {
+      "id": "2460046",
+      "name": "yalcin ayhan",
+      "email": "yalcinayhan232418@gmail.com",
+      "hasPassword": "1"
+    },
+    {
+      "id": "750132",
+      "name": "yunus yıldırım",
+      "email": "loftcrack@gmail.com",
+      "hasPassword": "0"
+    },
+    {
+      "id": "750073",
+      "name": "emre y",
+      "email": "yunusemreyalcin@gmail.com",
+      "hasPassword": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\temail\thasPassword\n2670045\tYeni Kullanıcı\tyenikullanici@test.com\t1\n2670036\tTest Curl User\ttestcurl@example.com\t1\n2460046\tyalcin ayhan\tyalcinayhan232418@gmail.com\t1\n750132\tyunus yıldırım\tloftcrack@gmail.com\t0\n750073\temre y\tyunusemreyalcin@gmail.com\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1515
+}

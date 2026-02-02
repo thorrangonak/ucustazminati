@@ -1,0 +1,404 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== USER MANAGEMENT ====================
+
+model User {
+  id                  String    @id @default(cuid())
+  email               String    @unique
+  passwordHash        String?
+  name                String?
+  phone               String?
+  role                UserRole  @default(USER)
+  emailVerified       DateTime?
+  emailVerificationToken String?
+  passwordResetToken  String?
+  passwordResetExpires DateTime?
+  googleId            String?   @unique
+  preferredLanguage   String    @default("tr")
+  preferredCurrency   String    @default("EUR")
+  avatar              String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  claims              Claim[]
+  sessions            Session[]
+  notifications       Notification[]
+
+  @@index([email])
+  @@index([googleId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+// ==================== CLAIMS ====================
+
+model Claim {
+  id                  String      @id @default(cuid())
+  claimNumber         String      @unique
+  userId              String
+  user                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Flight Details
+  flightNumber        String
+  flightDate          DateTime
+  departureAirportId  String
+  arrivalAirportId    String
+  departureAirport    Airport     @relation("DepartureAirport", fields: [departureAirportId], references: [id])
+  arrivalAirport      Airport     @relation("ArrivalAirport", fields: [arrivalAirportId], references: [id])
+  airlineId           String?
+  airline             Airline?    @relation(fields: [airlineId], references: [id])
+
+  // Flight Type
+  flightType          FlightType  @default(ONE_WAY)
+  hasConnection       Boolean     @default(false)
+  connectionAirportId String?
+  connectionAirport   Airport?    @relation("ConnectionAirport", fields: [connectionAirportId], references: [id])
+
+  // Disruption Details
+  disruptionType      DisruptionType
+  delayDuration       Int?        // in minutes
+
+  // Compensation Calculation
+  flightDistance      Int?        // in kilometers
+  isDomestic          Boolean     @default(false)
+  compensationAmount  Decimal     @db.Decimal(10, 2)
+  commissionRate      Decimal     @default(0.25) @db.Decimal(5, 4)
+  netPayoutAmount     Decimal?    @db.Decimal(10, 2)
+
+  // Status Tracking
+  status              ClaimStatus @default(DRAFT)
+  statusHistory       StatusHistory[]
+
+  // Consent & Signature
+  consentSignature    String?     @db.Text  // Base64 signature image
+  consentSignedAt     DateTime?
+  consentText         String?     @db.Text
+
+  // Payment Info
+  passengerIban       String?
+
+  // Additional Info
+  description         String?     @db.Text
+  internalNotes       String?     @db.Text
+  assignedTo          String?     // Admin user id
+
+  // Timestamps
+  submittedAt         DateTime?
+  resolvedAt          DateTime?
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+
+  passengers          Passenger[]
+  documents           Document[]
+  payments            Payment[]
+  communications      Communication[]
+
+  @@index([userId])
+  @@index([claimNumber])
+  @@index([status])
+  @@index([flightDate])
+  @@index([createdAt])
+}
+
+model StatusHistory {
+  id          String      @id @default(cuid())
+  claimId     String
+  claim       Claim       @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  fromStatus  ClaimStatus?
+  toStatus    ClaimStatus
+  changedBy   String?     // User id who made the change
+  note        String?
+  createdAt   DateTime    @default(now())
+
+  @@index([claimId])
+}
+
+model Passenger {
+  id          String   @id @default(cuid())
+  claimId     String
+  claim       Claim    @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  firstName   String
+  lastName    String
+  email       String?
+  phone       String?
+  dateOfBirth DateTime?
+  isPrimary   Boolean  @default(false)
+  ticketNumber String?
+  bookingReference String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([claimId])
+}
+
+model Document {
+  id          String       @id @default(cuid())
+  claimId     String
+  claim       Claim        @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  type        DocumentType
+  fileName    String
+  fileKey     String       // S3 key
+  fileUrl     String?
+  fileSize    Int?
+  mimeType    String?
+  isVerified  Boolean      @default(false)
+  verifiedAt  DateTime?
+  verifiedBy  String?
+  uploadedAt  DateTime     @default(now())
+
+  @@index([claimId])
+  @@index([type])
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  claimId         String
+  claim           Claim         @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  amount          Decimal       @db.Decimal(10, 2)
+  currency        String        @default("EUR")
+  status          PaymentStatus @default(PENDING)
+  paymentMethod   String?       // bank_transfer, etc.
+  iban            String?
+  transactionId   String?
+  paidAt          DateTime?
+  failedAt        DateTime?
+  failureReason   String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([claimId])
+  @@index([status])
+}
+
+model Communication {
+  id          String            @id @default(cuid())
+  claimId     String
+  claim       Claim             @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  type        CommunicationType
+  direction   String            // inbound, outbound
+  subject     String?
+  content     String            @db.Text
+  fromEmail   String?
+  toEmail     String?
+  sentAt      DateTime?
+  isRead      Boolean           @default(false)
+  createdAt   DateTime          @default(now())
+
+  @@index([claimId])
+}
+
+enum FlightType {
+  ONE_WAY
+  ROUND_TRIP
+  MULTI_CITY
+}
+
+enum DisruptionType {
+  DELAY
+  CANCELLATION
+  DENIED_BOARDING
+  DOWNGRADE
+}
+
+enum ClaimStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  DOCUMENTS_REQUESTED
+  AIRLINE_CONTACTED
+  AIRLINE_RESPONDED
+  NEGOTIATING
+  LEGAL_ACTION
+  APPROVED
+  REJECTED
+  PAID
+  CLOSED
+}
+
+enum DocumentType {
+  BOARDING_PASS
+  TICKET
+  BOOKING_CONFIRMATION
+  ID_CARD
+  PASSPORT
+  DELAY_CERTIFICATE
+  CANCELLATION_NOTICE
+  EXPENSE_RECEIPT
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum CommunicationType {
+  EMAIL
+  PHONE
+  INTERNAL_NOTE
+  AIRLINE_RESPONSE
+}
+
+// ==================== REFERENCE DATA ====================
+
+model Airline {
+  id          String   @id @default(cuid())
+  iataCode    String   @unique
+  icaoCode    String?
+  name        String
+  nameLocal   String?  // Turkish name
+  country     String?
+  isActive    Boolean  @default(true)
+  logoUrl     String?
+  contactEmail String?
+  contactPhone String?
+  website     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  claims      Claim[]
+
+  @@index([iataCode])
+  @@index([name])
+}
+
+model Airport {
+  id          String   @id @default(cuid())
+  iataCode    String   @unique
+  icaoCode    String?
+  name        String
+  nameLocal   String?  // Turkish name
+  city        String
+  cityLocal   String?  // Turkish city name
+  country     String
+  countryCode String
+  latitude    Float?
+  longitude   Float?
+  timezone    String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  departureFlights Claim[] @relation("DepartureAirport")
+  arrivalFlights   Claim[] @relation("ArrivalAirport")
+  connectionFlights Claim[] @relation("ConnectionAirport")
+
+  @@index([iataCode])
+  @@index([city])
+  @@index([country])
+}
+
+// ==================== NOTIFICATIONS ====================
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  title     String
+  message   String
+  link      String?
+  isRead    Boolean          @default(false)
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+}
+
+enum NotificationType {
+  CLAIM_STATUS_UPDATE
+  DOCUMENT_REQUIRED
+  PAYMENT_RECEIVED
+  MESSAGE
+  SYSTEM
+}
+
+// ==================== BLOG ====================
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String?
+  content     String    @db.Text
+  coverImage  String?
+  authorId    String?
+  authorName  String?
+  category    String?
+  tags        String[]
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+  viewCount   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([isPublished])
+  @@index([category])
+}
+
+// ==================== SETTINGS ====================
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
+  type      String   @default("string") // string, number, boolean, json
+  group     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([key])
+  @@index([group])
+}
+
+// ==================== AUDIT LOG ====================
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  entityType String
+  entityId   String?
+  oldValue   String?  @db.Text
+  newValue   String?  @db.Text
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}

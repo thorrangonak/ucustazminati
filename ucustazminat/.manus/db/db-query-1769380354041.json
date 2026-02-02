@@ -1,0 +1,65 @@
+{
+  "query": "SELECT id, claimNumber, departureAirport, arrivalAirport, isConnecting, connectionAirport, flightNumber, flight2Number, flight2Date FROM claims ORDER BY id DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, claimNumber, departureAirport, arrivalAirport, isConnecting, connectionAirport, flightNumber, flight2Number, flight2Date FROM claims ORDER BY id DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "540002",
+      "claimNumber": "UCT-2026-000034",
+      "departureAirport": "BCN",
+      "arrivalAirport": "AYT",
+      "isConnecting": "0",
+      "connectionAirport": "NULL",
+      "flightNumber": "TK1852",
+      "flight2Number": "NULL",
+      "flight2Date": "NULL"
+    },
+    {
+      "id": "540001",
+      "claimNumber": "UCT-2026-000033",
+      "departureAirport": "SAW",
+      "arrivalAirport": "DUS",
+      "isConnecting": "0",
+      "connectionAirport": "NULL",
+      "flightNumber": "TES69",
+      "flight2Number": "NULL",
+      "flight2Date": "NULL"
+    },
+    {
+      "id": "510001",
+      "claimNumber": "UCT-2026-000032",
+      "departureAirport": "IST",
+      "arrivalAirport": "BCN",
+      "isConnecting": "0",
+      "connectionAirport": "NULL",
+      "flightNumber": "TK1852",
+      "flight2Number": "NULL",
+      "flight2Date": "NULL"
+    },
+    {
+      "id": "480001",
+      "claimNumber": "UCT-2026-000031",
+      "departureAirport": "IST",
+      "arrivalAirport": "BCN",
+      "isConnecting": "0",
+      "connectionAirport": "NULL",
+      "flightNumber": "TK1856",
+      "flight2Number": "NULL",
+      "flight2Date": "NULL"
+    },
+    {
+      "id": "450001",
+      "claimNumber": "UCT-2026-000030",
+      "departureAirport": "AYT",
+      "arrivalAirport": "BCN",
+      "isConnecting": "0",
+      "connectionAirport": "NULL",
+      "flightNumber": "TK2415",
+      "flight2Number": "NULL",
+      "flight2Date": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclaimNumber\tdepartureAirport\tarrivalAirport\tisConnecting\tconnectionAirport\tflightNumber\tflight2Number\tflight2Date\n540002\tUCT-2026-000034\tBCN\tAYT\t0\tNULL\tTK1852\tNULL\tNULL\n540001\tUCT-2026-000033\tSAW\tDUS\t0\tNULL\tTES69\tNULL\tNULL\n510001\tUCT-2026-000032\tIST\tBCN\t0\tNULL\tTK1852\tNULL\tNULL\n480001\tUCT-2026-000031\tIST\tBCN\t0\tNULL\tTK1856\tNULL\tNULL\n450001\tUCT-2026-000030\tAYT\tBCN\t0\tNULL\tTK2415\tNULL\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 1533
+}

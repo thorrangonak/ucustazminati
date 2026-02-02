@@ -1,0 +1,21 @@
+{
+  "query": "SELECT id, email, name, role, emailVerified, passwordHash IS NOT NULL as hasPassword, resetPasswordToken, resetPasswordExpires, createdAt FROM users WHERE email = 'ykozdogan1@gmail.com';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, email, name, role, emailVerified, passwordHash IS NOT NULL as hasPassword, resetPasswordToken, resetPasswordExpires, createdAt FROM users WHERE email = 'ykozdogan1@gmail.com';",
+  "rows": [
+    {
+      "id": "33",
+      "email": "ykozdogan1@gmail.com",
+      "name": "kenan",
+      "role": "admin",
+      "emailVerified": "0",
+      "hasPassword": "0",
+      "resetPasswordToken": "NULL",
+      "resetPasswordExpires": "NULL",
+      "createdAt": "2026-01-17 13:47:33"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tname\trole\temailVerified\thasPassword\tresetPasswordToken\tresetPasswordExpires\tcreatedAt\n33\tykozdogan1@gmail.com\tkenan\tadmin\t0\t0\tNULL\tNULL\t2026-01-17 13:47:33\n",
+  "stderr": "",
+  "execution_time_ms": 1571
+}

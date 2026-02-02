@@ -1,0 +1,22 @@
+# robots.txt for UçuşTazminat
+# https://www.ucustazminat.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.ucustazminat.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin
+Disallow: /api/
+Disallow: /dashboard
+
+# Allow search engines to index public pages
+Allow: /
+Allow: /terms
+Allow: /privacy
+Allow: /kvkk
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1

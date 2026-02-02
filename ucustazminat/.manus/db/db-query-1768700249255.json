@@ -1,0 +1,50 @@
+{
+  "query": "SELECT c.id, c.claimNumber, c.compensationAmount, c.commissionAmount, c.netPayoutAmount, (SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id) as passengerCount FROM claims c ORDER BY c.id DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT c.id, c.claimNumber, c.compensationAmount, c.commissionAmount, c.netPayoutAmount, (SELECT COUNT(*) FROM passengers p WHERE p.claimId = c.id) as passengerCount FROM claims c ORDER BY c.id DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "60002",
+      "claimNumber": "UCT-2026-000010",
+      "compensationAmount": "400.00",
+      "commissionAmount": "100.00",
+      "netPayoutAmount": "300.00",
+      "passengerCount": "2"
+    },
+    {
+      "id": "60001",
+      "claimNumber": "UCT-2026-000009",
+      "compensationAmount": "400.00",
+      "commissionAmount": "100.00",
+      "netPayoutAmount": "300.00",
+      "passengerCount": "2"
+    },
+    {
+      "id": "30002",
+      "claimNumber": "UCT-2026-000008",
+      "compensationAmount": "600.00",
+      "commissionAmount": "150.00",
+      "netPayoutAmount": "450.00",
+      "passengerCount": "3"
+    },
+    {
+      "id": "30001",
+      "claimNumber": "UCT-2026-000007",
+      "compensationAmount": "600.00",
+      "commissionAmount": "150.00",
+      "netPayoutAmount": "450.00",
+      "passengerCount": "0"
+    },
+    {
+      "id": "6",
+      "claimNumber": "UCT-2026-000006",
+      "compensationAmount": "600.00",
+      "commissionAmount": "150.00",
+      "netPayoutAmount": "450.00",
+      "passengerCount": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclaimNumber\tcompensationAmount\tcommissionAmount\tnetPayoutAmount\tpassengerCount\n60002\tUCT-2026-000010\t400.00\t100.00\t300.00\t2\n60001\tUCT-2026-000009\t400.00\t100.00\t300.00\t2\n30002\tUCT-2026-000008\t600.00\t150.00\t450.00\t3\n30001\tUCT-2026-000007\t600.00\t150.00\t450.00\t0\n6\tUCT-2026-000006\t600.00\t150.00\t450.00\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1514
+}

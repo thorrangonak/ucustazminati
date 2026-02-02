@@ -1,0 +1,80 @@
+{
+  "query": "SELECT id, claimNumber, passengerIban, passengerBankName, consentSignature IS NOT NULL as hasSignature FROM claims WHERE passengerIban IS NOT NULL OR consentSignature IS NOT NULL LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, claimNumber, passengerIban, passengerBankName, consentSignature IS NOT NULL as hasSignature FROM claims WHERE passengerIban IS NOT NULL OR consentSignature IS NOT NULL LIMIT 10;",
+  "rows": [
+    {
+      "id": "3",
+      "claimNumber": "UCT-2026-000003",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "4",
+      "claimNumber": "UCT-2026-000004",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "5",
+      "claimNumber": "UCT-2026-000005",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "6",
+      "claimNumber": "UCT-2026-000006",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "30001",
+      "claimNumber": "UCT-2026-000007",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "30002",
+      "claimNumber": "UCT-2026-000008",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "60001",
+      "claimNumber": "UCT-2026-000009",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "60002",
+      "claimNumber": "UCT-2026-000010",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "90001",
+      "claimNumber": "UCT-2026-000011",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    },
+    {
+      "id": "120001",
+      "claimNumber": "UCT-2026-000012",
+      "passengerIban": "NULL",
+      "passengerBankName": "NULL",
+      "hasSignature": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclaimNumber\tpassengerIban\tpassengerBankName\thasSignature\n3\tUCT-2026-000003\tNULL\tNULL\t1\n4\tUCT-2026-000004\tNULL\tNULL\t1\n5\tUCT-2026-000005\tNULL\tNULL\t1\n6\tUCT-2026-000006\tNULL\tNULL\t1\n30001\tUCT-2026-000007\tNULL\tNULL\t1\n30002\tUCT-2026-000008\tNULL\tNULL\t1\n60001\tUCT-2026-000009\tNULL\tNULL\t1\n60002\tUCT-2026-000010\tNULL\tNULL\t1\n90001\tUCT-2026-000011\tNULL\tNULL\t1\n120001\tUCT-2026-000012\tNULL\tNULL\t1\n",
+  "stderr": "",
+  "execution_time_ms": 136
+}

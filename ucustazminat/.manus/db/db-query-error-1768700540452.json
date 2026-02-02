@@ -1,0 +1,8 @@
+{
+  "query": "SELECT c.id, c.claim_number, c.compensation_amount, c.commission_amount, c.net_payout_amount, \n       (SELECT COUNT(*) FROM passengers p WHERE p.claim_id = c.id) as passenger_count\nFROM claims c \nORDER BY c.id DESC \nLIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT c.id, c.claim_number, c.compensation_amount, c.commission_amount, c.net_payout_amount, \n       (SELECT COUNT(*) FROM passengers p WHERE p.claim_id = c.id) as passenger_count\nFROM claims c \nORDER BY c.id DESC \nLIMIT 10;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'c.claim_number' in 'field list'"
+  ]
+}

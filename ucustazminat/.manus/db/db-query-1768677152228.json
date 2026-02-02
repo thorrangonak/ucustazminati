@@ -1,0 +1,196 @@
+{
+  "query": "SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'claims' ORDER BY ORDINAL_POSITION;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'claims' ORDER BY ORDINAL_POSITION;",
+  "rows": [
+    {
+      "COLUMN_NAME": "id",
+      "DATA_TYPE": "int",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "claimNumber",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "20",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "userId",
+      "DATA_TYPE": "int",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "flightNumber",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "20",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "flightDate",
+      "DATA_TYPE": "timestamp",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "airlineId",
+      "DATA_TYPE": "int",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "departureAirport",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "10",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "arrivalAirport",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "10",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "disruptionType",
+      "DATA_TYPE": "enum",
+      "CHARACTER_MAXIMUM_LENGTH": "15",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "delayDuration",
+      "DATA_TYPE": "int",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "passengerName",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "255",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "passengerEmail",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "320",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "passengerPhone",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "50",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "bookingReference",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "50",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "flightDistance",
+      "DATA_TYPE": "int",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "compensationAmount",
+      "DATA_TYPE": "decimal",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "commissionRate",
+      "DATA_TYPE": "decimal",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "commissionAmount",
+      "DATA_TYPE": "decimal",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "netPayoutAmount",
+      "DATA_TYPE": "decimal",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "status",
+      "DATA_TYPE": "enum",
+      "CHARACTER_MAXIMUM_LENGTH": "16",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "statusHistory",
+      "DATA_TYPE": "json",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "internalNotes",
+      "DATA_TYPE": "text",
+      "CHARACTER_MAXIMUM_LENGTH": "65535",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "publicNotes",
+      "DATA_TYPE": "text",
+      "CHARACTER_MAXIMUM_LENGTH": "65535",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "rejectionReason",
+      "DATA_TYPE": "text",
+      "CHARACTER_MAXIMUM_LENGTH": "65535",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "submittedAt",
+      "DATA_TYPE": "timestamp",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "resolvedAt",
+      "DATA_TYPE": "timestamp",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "createdAt",
+      "DATA_TYPE": "timestamp",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "updatedAt",
+      "DATA_TYPE": "timestamp",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "NO"
+    },
+    {
+      "COLUMN_NAME": "consentSignature",
+      "DATA_TYPE": "mediumtext",
+      "CHARACTER_MAXIMUM_LENGTH": "16777215",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "consentSignedAt",
+      "DATA_TYPE": "timestamp",
+      "CHARACTER_MAXIMUM_LENGTH": "NULL",
+      "IS_NULLABLE": "YES"
+    },
+    {
+      "COLUMN_NAME": "consentIpAddress",
+      "DATA_TYPE": "varchar",
+      "CHARACTER_MAXIMUM_LENGTH": "45",
+      "IS_NULLABLE": "YES"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\tDATA_TYPE\tCHARACTER_MAXIMUM_LENGTH\tIS_NULLABLE\nid\tint\tNULL\tNO\nclaimNumber\tvarchar\t20\tNO\nuserId\tint\tNULL\tNO\nflightNumber\tvarchar\t20\tNO\nflightDate\ttimestamp\tNULL\tNO\nairlineId\tint\tNULL\tYES\ndepartureAirport\tvarchar\t10\tNO\narrivalAirport\tvarchar\t10\tNO\ndisruptionType\tenum\t15\tNO\ndelayDuration\tint\tNULL\tYES\npassengerName\tvarchar\t255\tNO\npassengerEmail\tvarchar\t320\tNO\npassengerPhone\tvarchar\t50\tYES\nbookingReference\tvarchar\t50\tYES\nflightDistance\tint\tNULL\tYES\ncompensationAmount\tdecimal\tNULL\tYES\ncommissionRate\tdecimal\tNULL\tYES\ncommissionAmount\tdecimal\tNULL\tYES\nnetPayoutAmount\tdecimal\tNULL\tYES\nstatus\tenum\t16\tNO\nstatusHistory\tjson\tNULL\tYES\ninternalNotes\ttext\t65535\tYES\npublicNotes\ttext\t65535\tYES\nrejectionReason\ttext\t65535\tYES\nsubmittedAt\ttimestamp\tNULL\tYES\nresolvedAt\ttimestamp\tNULL\tYES\ncreatedAt\ttimestamp\tNULL\tNO\nupdatedAt\ttimestamp\tNULL\tNO\nconsentSignature\tmediumtext\t16777215\tYES\nconsentSignedAt\ttimestamp\tNULL\tYES\nconsentIpAddress\tvarchar\t45\tYES\n",
+  "stderr": "",
+  "execution_time_ms": 1510
+}

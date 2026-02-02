@@ -1,0 +1,50 @@
+{
+  "query": "SELECT id, openId, email, name, passwordHash IS NOT NULL as hasPassword, role FROM users ORDER BY id DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4MnnD988k3RcU52.cd3e2ec22736 --database i5yu9ztG5JfDUj54XedFbT --execute SELECT id, openId, email, name, passwordHash IS NOT NULL as hasPassword, role FROM users ORDER BY id DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "2460046",
+      "openId": "local_1769219092295_70l1p6g",
+      "email": "yalcinayhan232418@gmail.com",
+      "name": "yalcin ayhan",
+      "hasPassword": "1",
+      "role": "user"
+    },
+    {
+      "id": "750132",
+      "openId": "FaoaNY2c6z4EGntLKd4u4z",
+      "email": "loftcrack@gmail.com",
+      "name": "yunus yıldırım",
+      "hasPassword": "0",
+      "role": "user"
+    },
+    {
+      "id": "750073",
+      "openId": "LisrHuxPkZxKLDKRMvvuBA",
+      "email": "yunusemreyalcin@gmail.com",
+      "name": "emre y",
+      "hasPassword": "0",
+      "role": "user"
+    },
+    {
+      "id": "750005",
+      "openId": "hoMpLWUCyUY7ESnhiRry38",
+      "email": "ersintarhan@gmail.com",
+      "name": "Ersin Tarhan",
+      "hasPassword": "0",
+      "role": "user"
+    },
+    {
+      "id": "329",
+      "openId": "D2ArQabxVkHg7J4PQoCqs4",
+      "email": "ykozdogann@gmail.com",
+      "name": "kenan",
+      "hasPassword": "0",
+      "role": "user"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\topenId\temail\tname\thasPassword\trole\n2460046\tlocal_1769219092295_70l1p6g\tyalcinayhan232418@gmail.com\tyalcin ayhan\t1\tuser\n750132\tFaoaNY2c6z4EGntLKd4u4z\tloftcrack@gmail.com\tyunus yıldırım\t0\tuser\n750073\tLisrHuxPkZxKLDKRMvvuBA\tyunusemreyalcin@gmail.com\temre y\t0\tuser\n750005\thoMpLWUCyUY7ESnhiRry38\tersintarhan@gmail.com\tErsin Tarhan\t0\tuser\n329\tD2ArQabxVkHg7J4PQoCqs4\tykozdogann@gmail.com\tkenan\t0\tuser\n",
+  "stderr": "",
+  "execution_time_ms": 1565
+}
