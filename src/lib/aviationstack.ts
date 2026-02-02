@@ -3,6 +3,8 @@
  * https://aviationstack.com/documentation
  */
 
+import { getSettingOrEnv } from '@/lib/services/settings'
+
 const AVIATIONSTACK_BASE_URL = 'http://api.aviationstack.com/v1'
 
 export interface AviationStackFlight {
@@ -141,7 +143,8 @@ export async function getFlightFromAviationStack(
   flightNumber: string,
   flightDate?: string
 ): Promise<FlightDelayInfo | null> {
-  const apiKey = process.env.AVIATIONSTACK_API_KEY
+  // Get API key from settings or environment variable
+  const apiKey = await getSettingOrEnv('AVIATIONSTACK_API_KEY')
 
   if (!apiKey || apiKey === 'demo') {
     console.log('AviationStack API key not configured, using mock data')
@@ -239,7 +242,7 @@ export async function getHistoricalFlight(
   flightNumber: string,
   flightDate: string
 ): Promise<FlightDelayInfo | null> {
-  const apiKey = process.env.AVIATIONSTACK_API_KEY
+  const apiKey = await getSettingOrEnv('AVIATIONSTACK_API_KEY')
 
   if (!apiKey || apiKey === 'demo') {
     return null

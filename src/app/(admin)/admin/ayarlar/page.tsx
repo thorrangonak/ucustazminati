@@ -23,6 +23,7 @@ import {
   EyeOff,
   Check,
   AlertCircle,
+  Key,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -44,6 +45,7 @@ const GROUP_ICONS: Record<string, React.ReactNode> = {
   social: <Share2 className="h-4 w-4" />,
   seo: <Search className="h-4 w-4" />,
   payment: <CreditCard className="h-4 w-4" />,
+  api: <Key className="h-4 w-4" />,
 }
 
 export default function AdminSettingsPage() {

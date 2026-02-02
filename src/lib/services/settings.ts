@@ -13,6 +13,7 @@ export type SettingGroup =
   | 'social'
   | 'seo'
   | 'payment'
+  | 'api'
 
 export interface SettingDefinition {
   key: string
@@ -229,6 +230,22 @@ export const SETTING_DEFINITIONS: SettingDefinition[] = [
     type: 'string',
     group: 'payment',
   },
+
+  // External API Settings
+  {
+    key: 'AVIATIONSTACK_API_KEY',
+    label: 'AviationStack API Key',
+    description: 'Uçuş bilgisi sorgulama için AviationStack API anahtarı',
+    type: 'password',
+    group: 'api',
+  },
+  {
+    key: 'SCANBOT_LICENSE_KEY',
+    label: 'Scanbot License Key',
+    description: 'Barkod tarama için Scanbot SDK lisans anahtarı',
+    type: 'password',
+    group: 'api',
+  },
 ]
 
 // Group labels for UI
@@ -240,6 +257,7 @@ export const SETTING_GROUP_LABELS: Record<SettingGroup, string> = {
   social: 'Sosyal Medya',
   seo: 'SEO Ayarları',
   payment: 'Ödeme Ayarları',
+  api: 'Harici API Anahtarları',
 }
 
 // Clear the cache
