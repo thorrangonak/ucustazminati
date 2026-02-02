@@ -1,10 +1,52 @@
 import { Html5Qrcode } from 'html5-qrcode'
 
 /**
- * Scan barcode from an image file using html5-qrcode
- * Supports PDF417, QR codes, and other common barcode formats
+ * Scan barcode from an image file
+ * First tries Scanbot SDK, then falls back to html5-qrcode
  */
 export async function scanBarcodeFromImage(file: File): Promise<string | null> {
+  // Try Scanbot first (better PDF417 support)
+  try {
+    const scanbotResult = await scanWithScanbot(file)
+    if (scanbotResult) {
+      console.log('Scanbot SDK scan successful')
+      return scanbotResult
+    }
+  } catch (error) {
+    console.log('Scanbot SDK failed, trying html5-qrcode...', error)
+  }
+
+  // Fall back to html5-qrcode
+  try {
+    const html5Result = await scanWithHtml5Qrcode(file)
+    if (html5Result) {
+      console.log('html5-qrcode scan successful')
+      return html5Result
+    }
+  } catch (error) {
+    console.log('html5-qrcode also failed', error)
+  }
+
+  return null
+}
+
+/**
+ * Scan using Scanbot SDK
+ */
+async function scanWithScanbot(file: File): Promise<string | null> {
+  try {
+    const { scanBarcodeFromImage: scanbotScan } = await import('@/lib/scanbot')
+    return await scanbotScan(file)
+  } catch (error) {
+    console.error('Scanbot error:', error)
+    return null
+  }
+}
+
+/**
+ * Scan using html5-qrcode
+ */
+async function scanWithHtml5Qrcode(file: File): Promise<string | null> {
   try {
     // Create a temporary container for the scanner
     const scannerId = 'html5qr-scanner-' + Date.now()
@@ -32,13 +74,13 @@ export async function scanBarcodeFromImage(file: File): Promise<string | null> {
       }
       container.remove()
 
-      console.log('html5-qrcode scan failed, trying alternative method...', scanError)
+      console.log('html5-qrcode direct scan failed, trying with preprocessing...', scanError)
 
-      // Try with different configuration
+      // Try with image preprocessing
       return await scanWithCanvasPreprocessing(file)
     }
   } catch (error) {
-    console.error('Barcode scan error:', error)
+    console.error('html5-qrcode error:', error)
     return null
   }
 }
@@ -55,7 +97,7 @@ async function scanWithCanvasPreprocessing(file: File): Promise<string | null> {
 
       img.onload = async () => {
         // Create canvas with different sizes for better detection
-        const sizes = [1, 1.5, 2, 0.75]
+        const sizes = [1, 1.5, 2, 0.75, 0.5]
 
         for (const scale of sizes) {
           const canvas = document.createElement('canvas')
@@ -66,7 +108,7 @@ async function scanWithCanvasPreprocessing(file: File): Promise<string | null> {
           canvas.width = img.width * scale
           canvas.height = img.height * scale
 
-          // Draw with optional preprocessing
+          // Draw image
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 
           // Try to increase contrast for better barcode detection
@@ -77,8 +119,8 @@ async function scanWithCanvasPreprocessing(file: File): Promise<string | null> {
             // Convert to grayscale and increase contrast
             for (let i = 0; i < data.length; i += 4) {
               const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]
-              // Increase contrast
-              const contrasted = gray < 128 ? Math.max(0, gray * 0.5) : Math.min(255, gray * 1.5)
+              // Increase contrast with threshold
+              const contrasted = gray < 128 ? Math.max(0, gray * 0.3) : Math.min(255, 128 + (gray - 128) * 1.5)
               data[i] = contrasted
               data[i + 1] = contrasted
               data[i + 2] = contrasted
@@ -97,7 +139,7 @@ async function scanWithCanvasPreprocessing(file: File): Promise<string | null> {
           if (blob) {
             const processedFile = new File([blob], 'processed.png', { type: 'image/png' })
 
-            const scannerId = 'html5qr-scanner-retry-' + Date.now()
+            const scannerId = 'html5qr-scanner-retry-' + Date.now() + '-' + scale
             const container = document.createElement('div')
             container.id = scannerId
             container.style.display = 'none'
