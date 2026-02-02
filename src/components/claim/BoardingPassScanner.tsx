@@ -46,10 +46,10 @@ export function BoardingPassScanner({ onScanComplete }: BoardingPassScannerProps
     }, 150)
 
     try {
-      // Use html5-qrcode for barcode scanning (license-free)
+      // Use Scanbot SDK for barcode scanning
       setScanStatus('Barkod taranıyor...')
 
-      const { scanBarcodeFromImage } = await import('@/lib/barcode-scanner')
+      const { scanBarcodeFromImage } = await import('@/lib/scanbot')
       const barcodeData = await scanBarcodeFromImage(file)
 
       clearInterval(progressInterval)

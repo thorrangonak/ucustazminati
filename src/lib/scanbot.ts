@@ -24,25 +24,39 @@ export async function initScanbotSDK(): Promise<ScanbotSDK> {
     return scanbotSDK
   }
 
-  scanbotSDK = await ScanbotSDK.initialize({
-    licenseKey: LICENSE_KEY,
-    enginePath: '/scanbot-sdk/',
-  })
+  console.log('Scanbot SDK initializing for domain:', window.location.hostname)
 
-  return scanbotSDK
+  try {
+    scanbotSDK = await ScanbotSDK.initialize({
+      licenseKey: LICENSE_KEY,
+      enginePath: '/scanbot-sdk/',
+    })
+
+    const licenseInfo = await scanbotSDK.getLicenseInfo()
+    console.log('Scanbot License Info:', licenseInfo)
+
+    return scanbotSDK
+  } catch (error) {
+    console.error('Scanbot SDK initialization failed:', error)
+    throw error
+  }
 }
 
 export async function scanBarcodeFromImage(imageFile: File): Promise<string | null> {
   try {
+    console.log('Starting barcode scan for file:', imageFile.name, 'size:', imageFile.size)
+
     const sdk = await initScanbotSDK()
 
     // Create data URL from file
     const imageUrl = URL.createObjectURL(imageFile)
+    console.log('Image URL created:', imageUrl)
 
     // Access Config through ScanbotSDK static property
     const { BarcodeFormatCommonTwoDConfiguration } = ScanbotSDK.Config
 
     // Detect barcodes - use 2D barcode config which includes PDF417, Aztec, QR, DataMatrix
+    console.log('Calling detectBarcodes...')
     const result = await sdk.detectBarcodes(imageUrl, {
       barcodeFormatConfigurations: [
         new BarcodeFormatCommonTwoDConfiguration({
@@ -52,17 +66,21 @@ export async function scanBarcodeFromImage(imageFile: File): Promise<string | nu
       returnBarcodeImage: false,
     })
 
+    console.log('Scanbot result:', result)
+
     // Cleanup
     URL.revokeObjectURL(imageUrl)
 
     if (result && result.barcodes && result.barcodes.length > 0) {
+      console.log('Barcode found:', result.barcodes[0])
       return result.barcodes[0].text || null
     }
 
+    console.log('No barcodes found in image')
     return null
   } catch (error) {
     console.error('Scanbot scan error:', error)
-    return null
+    throw error // Re-throw to see the actual error
   }
 }
 
