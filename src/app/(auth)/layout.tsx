@@ -47,7 +47,7 @@ export default function AuthLayout({
       </div>
 
       {/* Right Side - Auth Form */}
-      <div className="flex w-full items-center justify-center p-8 lg:w-1/2">
+      <div className="flex w-full items-center justify-center p-4 sm:p-6 md:p-8 lg:w-1/2">
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="mb-8 flex justify-center lg:hidden">

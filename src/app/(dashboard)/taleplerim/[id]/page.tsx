@@ -342,25 +342,53 @@ export default function ClaimDetailPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between overflow-x-auto pb-2">
+          {/* Mobile Timeline - Vertical */}
+          <div className="flex sm:hidden flex-col gap-3">
+            {timelineSteps.map((step, index) => (
+              <div key={step.status} className="flex items-center gap-3">
+                <div
+                  className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-all ${
+                    index <= currentStepIndex
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-100 text-gray-400'
+                  }`}
+                >
+                  {index < currentStepIndex ? (
+                    <CheckCircle2 className="h-4 w-4" />
+                  ) : (
+                    <Circle className="h-4 w-4" />
+                  )}
+                </div>
+                <span
+                  className={`text-sm font-medium ${
+                    index <= currentStepIndex ? 'text-primary' : 'text-muted-foreground'
+                  }`}
+                >
+                  {step.label}
+                </span>
+              </div>
+            ))}
+          </div>
+          {/* Desktop Timeline - Horizontal */}
+          <div className="hidden sm:flex items-center justify-between overflow-x-auto pb-2">
             {timelineSteps.map((step, index) => (
               <div key={step.status} className="flex items-center">
-                <div className="flex flex-col items-center min-w-[80px]">
+                <div className="flex flex-col items-center min-w-[60px] md:min-w-[80px]">
                   <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-full transition-all ${
+                    className={`flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full transition-all ${
                       index <= currentStepIndex
                         ? 'bg-primary text-white shadow-lg shadow-primary/30'
                         : 'bg-gray-100 text-gray-400'
                     }`}
                   >
                     {index < currentStepIndex ? (
-                      <CheckCircle2 className="h-6 w-6" />
+                      <CheckCircle2 className="h-5 w-5 md:h-6 md:w-6" />
                     ) : (
-                      <Circle className="h-6 w-6" />
+                      <Circle className="h-5 w-5 md:h-6 md:w-6" />
                     )}
                   </div>
                   <span
-                    className={`mt-2 text-xs font-medium text-center ${
+                    className={`mt-2 text-[10px] md:text-xs font-medium text-center ${
                       index <= currentStepIndex ? 'text-primary' : 'text-muted-foreground'
                     }`}
                   >
@@ -369,7 +397,7 @@ export default function ClaimDetailPage() {
                 </div>
                 {index < timelineSteps.length - 1 && (
                   <div
-                    className={`h-1 w-12 sm:w-16 lg:w-24 rounded transition-colors ${
+                    className={`h-1 w-8 sm:w-12 md:w-16 lg:w-24 rounded transition-colors ${
                       index < currentStepIndex ? 'bg-primary' : 'bg-gray-200'
                     }`}
                   />

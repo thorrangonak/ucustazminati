@@ -167,9 +167,9 @@ export default function HomePage() {
       <section className="relative -mt-8 z-10 mx-auto max-w-6xl px-4 lg:px-8">
         <Card className="shadow-xl border-0">
           <CardContent className="p-0">
-            <div className="grid grid-cols-2 divide-x divide-y lg:grid-cols-4 lg:divide-y-0">
+            <div className="grid grid-cols-2 divide-x divide-gray-100 md:grid-cols-4 md:divide-y-0">
               {stats.map((stat) => (
-                <div key={stat.label} className="p-6 lg:p-8 text-center group hover:bg-muted/50 transition-colors">
+                <div key={stat.label} className="p-4 sm:p-6 lg:p-8 text-center group hover:bg-muted/50 transition-colors">
                   <div className={`mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 ${stat.color} group-hover:scale-110 transition-transform`}>
                     <stat.icon className="h-6 w-6" />
                   </div>
@@ -197,7 +197,7 @@ export default function HomePage() {
               Karmasik prosedurlerle ugrasmayin. Biz sizin icin halledelim.
             </p>
           </div>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="mt-12 sm:mt-16 grid gap-6 sm:gap-8 md:grid-cols-3">
             {steps.map((step, index) => (
               <div key={step.title} className="relative group">
                 <Card className="h-full card-hover border-0 shadow-lg">
@@ -377,17 +377,17 @@ export default function HomePage() {
                 </Button>
               </Link>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-6 text-white/80 text-sm">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5" />
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-white/80 text-xs sm:text-sm">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <CheckCircle2 className="h-4 w-4" />
                 <span>Ucretsiz basvuru</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <CheckCircle2 className="h-4 w-4" />
                 <span>No Win No Fee</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <CheckCircle2 className="h-4 w-4" />
                 <span>%98 basari</span>
               </div>
             </div>

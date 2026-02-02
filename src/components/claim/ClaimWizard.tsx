@@ -241,7 +241,23 @@ export function ClaimWizard() {
         </p>
       </div>
 
-      {/* Step Indicators */}
+      {/* Mobile Step Indicators */}
+      <div className="flex lg:hidden overflow-x-auto gap-1 mb-6 pb-2">
+        {steps.map((step) => (
+          <div
+            key={step.id}
+            className={`flex-shrink-0 h-1.5 w-8 rounded-full transition-colors ${
+              currentStep > step.id
+                ? 'bg-green-500'
+                : currentStep === step.id
+                ? 'bg-primary'
+                : 'bg-gray-200'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Desktop Step Indicators */}
       <div className="hidden lg:flex items-center justify-between mb-8">
         {steps.map((step, index) => (
           <div key={step.id} className="flex items-center">

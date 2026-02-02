@@ -416,26 +416,26 @@ export default function AdminClaimsPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b text-left text-sm text-muted-foreground">
-                    <th className="p-4">
+                    <th className="p-4 hidden sm:table-cell">
                       <Checkbox
                         checked={selectedClaims.length === claims.length && claims.length > 0}
                         onCheckedChange={toggleAllClaims}
                       />
                     </th>
                     <th className="p-4 font-medium">Talep No</th>
-                    <th className="p-4 font-medium">Kullanıcı</th>
+                    <th className="p-4 font-medium hidden md:table-cell">Kullanıcı</th>
                     <th className="p-4 font-medium">Uçuş</th>
-                    <th className="p-4 font-medium">Tip</th>
+                    <th className="p-4 font-medium hidden lg:table-cell">Tip</th>
                     <th className="p-4 font-medium">Tutar</th>
                     <th className="p-4 font-medium">Durum</th>
-                    <th className="p-4 font-medium">Tarih</th>
+                    <th className="p-4 font-medium hidden md:table-cell">Tarih</th>
                     <th className="p-4 font-medium"></th>
                   </tr>
                 </thead>
                 <tbody>
                   {claims.map((claim) => (
                     <tr key={claim.id} className="border-b last:border-0 hover:bg-muted/50">
-                      <td className="p-4">
+                      <td className="p-4 hidden sm:table-cell">
                         <Checkbox
                           checked={selectedClaims.includes(claim.id)}
                           onCheckedChange={() => toggleClaimSelection(claim.id)}
@@ -444,12 +444,12 @@ export default function AdminClaimsPage() {
                       <td className="p-4">
                         <Link
                           href={`/admin/talepler/${claim.id}`}
-                          className="font-medium hover:text-primary hover:underline"
+                          className="font-medium hover:text-primary hover:underline text-sm sm:text-base"
                         >
                           {claim.claimNumber}
                         </Link>
                       </td>
-                      <td className="p-4">
+                      <td className="p-4 hidden md:table-cell">
                         <div>
                           <p className="font-medium">{claim.userName}</p>
                           <p className="text-sm text-muted-foreground">{claim.userEmail}</p>
@@ -457,16 +457,16 @@ export default function AdminClaimsPage() {
                       </td>
                       <td className="p-4">
                         <div>
-                          <p className="font-medium">{claim.flightNumber}</p>
-                          <p className="text-sm text-muted-foreground">{claim.route}</p>
+                          <p className="font-medium text-sm sm:text-base">{claim.flightNumber}</p>
+                          <p className="text-xs sm:text-sm text-muted-foreground">{claim.route}</p>
                         </div>
                       </td>
-                      <td className="p-4 text-sm">
+                      <td className="p-4 text-sm hidden lg:table-cell">
                         {getDisruptionLabel(claim.disruptionType)}
                       </td>
-                      <td className="p-4 font-semibold">€{claim.amount}</td>
+                      <td className="p-4 font-semibold text-sm sm:text-base">€{claim.amount}</td>
                       <td className="p-4">{getStatusBadge(claim.status)}</td>
-                      <td className="p-4 text-muted-foreground text-sm">
+                      <td className="p-4 text-muted-foreground text-sm hidden md:table-cell">
                         {new Date(claim.createdAt).toLocaleDateString('tr-TR')}
                       </td>
                       <td className="p-4">

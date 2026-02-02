@@ -306,7 +306,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div
-              className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary prose-img:rounded-lg"
+              className="prose prose-sm sm:prose-base md:prose-lg max-w-none prose-headings:font-bold prose-a:text-primary prose-img:rounded-lg"
               dangerouslySetInnerHTML={{
                 __html: post.content
                   .split('\n\n')
